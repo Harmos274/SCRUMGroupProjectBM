@@ -2,6 +2,7 @@ import './App.css';
 import {Route, Routes} from "react-router-dom";
 import {ChakraProvider} from "@chakra-ui/react";
 import theme from "./utils/theme";
+import routesPath from "./utils/router";
 import HomePage from "./pages/HomePage";
 import ChangeCalculatorPage from "./pages/ChangeCalculatorPage";
 import ItemPackingPage from "./pages/ItemPackingPage";
@@ -15,11 +16,11 @@ function App() {
             <ChakraProvider theme={theme}>
                 <NavBar/>
                 <Routes>
-                    <Route path="/" exact element={<HomePage/>}/>
-                    <Route path="/stock" element={<StockPage/>}/>
-                    <Route path="/item-packing" element={<ItemPackingPage/>}/>
-                    <Route path="/shopping-basket" element={<ShoppingBasketPage/>}/>
-                    <Route path="/change" element={<ChangeCalculatorPage/>}/>
+                    <Route path={routesPath.Home} element={<HomePage/>}/>
+                    <Route path={routesPath.Stock} element={<StockPage/>}/>
+                    <Route path={routesPath.ItemPacking} element={<ItemPackingPage/>}/>
+                    <Route path={routesPath.ShoppingBasket} element={<ShoppingBasketPage/>}/>
+                    <Route path={routesPath.ChangeCalculator} element={<ChangeCalculatorPage/>}/>
                 </Routes>
             </ChakraProvider>
         </div>

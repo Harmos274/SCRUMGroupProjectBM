@@ -3,6 +3,7 @@ import {Box, Flex, Stack, Text} from "@chakra-ui/react";
 
 import Logo from "./Logo";
 import {NavLink} from "react-router-dom";
+import routesPath from "../utils/router";
 
 const NavBar = (props) => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -54,11 +55,11 @@ const MenuLinks = ({isOpen}) => {
                 direction={["column", "row", "row", "row"]}
                 pt={[4, 4, 0, 0]}
             >
-                <MenuItem to="/">Home</MenuItem>
-                <MenuItem to="/stock">Stocks </MenuItem>
-                <MenuItem to="/item-packing">Item Packing</MenuItem>
-                <MenuItem to="/shopping-basket">Shopping Basket</MenuItem>
-                <MenuItem to="/change">Change Calculator</MenuItem>
+                <MenuItem to={routesPath.Home}>Home</MenuItem>
+                <MenuItem to={routesPath.Stock}>Stocks </MenuItem>
+                <MenuItem to={routesPath.ItemPacking}>Item Packing</MenuItem>
+                <MenuItem to={routesPath.ShoppingBasket}>Shopping Basket</MenuItem>
+                <MenuItem to={routesPath.ChangeCalculator}>Change Calculator</MenuItem>
             </Stack>
         </Box>
     );
