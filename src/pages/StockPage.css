@@ -1,0 +1,43 @@
+.stock-elements-container {
+    margin: 10;
+}
+
+.stock-item-element {
+    border: 1px solid grey;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#stock-page-container {
+    margin-right: 80px;
+    margin-left: 80px;
+}
+
+.stock-page-item-info {
+    width: 16%;
+}
+
+#stock-page-titles {
+    background-color: #075C37;
+    color: white;
+}
+
+.stock-page-delete-button {
+    background-color: red;
+    border-radius: 5px;
+    padding: 2px 5px 2px 5px;
+    font-size: 14px;
+    color: white;
+}
+
+#stock-item-go-back {
+    text-align: left;
+    flex-direction: row;
+    border: 2px solid #075C37;
+    border-radius: 8px;
+    display: table;
+    padding: 5px;
+    margin: 20px;
+}
