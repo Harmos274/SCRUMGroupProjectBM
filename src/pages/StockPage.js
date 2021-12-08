@@ -3,20 +3,11 @@ import './StockPage.css'
 import { useBSMContext } from '../utils/store';
 import {Link} from "react-router-dom";
 
-function getPrice(type) {
-  if (type === "Gift")
-    return 20;
-  if (type === "Luxury")
-    return 50;
-  if (type === "Essential")
-    return 30;
-  return 0;
-}
-
 function StockPage() {
   const data = useBSMContext();
 
   const [items, ] = useState(data ? data.items.items : []);
+  const getPrice = {"Luxury": 50, "Gift": 20, "Essential": 30};
 
   return (
     <div id="stock-page-container">
@@ -35,14 +26,14 @@ function StockPage() {
           <div className="stock-page-item-info">Expiration</div>
           <div className="stock-page-item-info"></div>
         </div>
-        {items && items.length !== 0 ? items.map(item => {
+        {items && items.length !== 0 ? items.map((item, index) => {
           return (
-            <div key={item.name} className="stock-item-element">
+            <div key={index} className="stock-item-element">
               <div className="stock-page-item-info">{item.name}</div>
               <div className="stock-page-item-info">{item.quantity}</div>
               <div className="stock-page-item-info">{item.dimensions.height}x{item.dimensions.width}x{item.dimensions.length}cm</div>
               <div className="stock-page-item-info">{item.type}</div>
-              <div className="stock-page-item-info">€{getPrice(item.type)}</div>
+              <div className="stock-page-item-info">€{getPrice[item.type]}</div>
               <div className="stock-page-item-info">{new Date(item.expiration_date).toDateString()}</div>
               <div className="stock-page-item-info">
                 <button className="stock-page-delete-button">Delete</button>
