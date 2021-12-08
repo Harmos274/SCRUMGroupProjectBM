@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e6cffa93-21c9-4e72-bbe1-cca2f19769f8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ShoppingBasketPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ShoppingBasketPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/ShoppingBasketPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ShoppingBasketPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +44,7 @@
       <updated>1638795854634</updated>
       <workItem from="1638795857037" duration="945000" />
       <workItem from="1638960106247" duration="6028000" />
+      <workItem from="1638992541476" duration="2799000" />
     </task>
     <servers />
   </component>
@@ -61,5 +61,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

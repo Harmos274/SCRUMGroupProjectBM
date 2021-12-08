@@ -3,7 +3,8 @@ import './ShoppingBasketPage.css';
 
 
 export default function ShoppingBasketPage() {
-    const listItem = [
+    var listItemBasket = {},
+        listItem = [
         {
             name: "A",
             quantity: 3,
@@ -75,12 +76,24 @@ export default function ShoppingBasketPage() {
             expiration_date: "2021-12-08T11:13:03.203Z"
         },
     ]
+
+    function addBasket(index) {
+        if (typeof listItemBasket.index === "undefined") {
+            listItemBasket.index = 1;
+        } else {
+            listItemBasket.index++;
+        }
+        if ( (listItemBasket.index > listItem[index].quantity) ) {
+
+        }
+    }
+
     return <div>
         <div className="conteneur-list-item">
             <ul className="list-item">
                 {listItem.map(
-                    (item) =>
-                        <li className="item">
+                    (item, index) =>
+                        <li className="item" key={index}>
                             <span className="type-item">{item.type}</span>
                             <div className="conteneur-item">
                                 <span className="description">Name: </span>
@@ -95,7 +108,7 @@ export default function ShoppingBasketPage() {
                                 <span className="description">Dimensions:</span>
                                 <span className="info">({item.dimensions.length}/{item.dimensions.width}/{item.dimensions.height})</span>
                             </div>
-                            <button className="button">Add to basket</button>
+                            <button className="button" onClick={() => addBasket(index)}>Add to basket</button>
                         </li>
                 )}
             </ul>
