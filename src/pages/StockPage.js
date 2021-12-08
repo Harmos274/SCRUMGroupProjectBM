@@ -6,7 +6,6 @@ import {Button, Flex} from "@chakra-ui/react";
 
 function StockPage() {
     const {items,} = useBSMContext();
-
     const [onlyExpired, setOnlyExpired] = useState(false)
     const [displayedItems, setDisplayedItems] = useState(items)
 
