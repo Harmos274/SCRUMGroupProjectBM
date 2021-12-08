@@ -45,3 +45,8 @@ span {
 .description {
     font-style: italic;
 }
+
+.button {
+    background: #E2E8F0;
+    border-radius: 15px;
+}

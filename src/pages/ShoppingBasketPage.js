@@ -8,9 +8,9 @@ export default function ShoppingBasketPage() {
             name: "A",
             quantity: 3,
             dimensions: {
-                height: .300,
-                length: .400,
-                width: .100
+                height: 300,
+                length: 400,
+                width: 100
             },
             type: "Gift",
             expiration_date: "2021-12-08T11:13:03.203Z"
@@ -19,9 +19,9 @@ export default function ShoppingBasketPage() {
             name: "B",
             quantity: 5,
             dimensions: {
-                height: .300,
-                length: .400,
-                width: .100
+                height: 300,
+                length: 400,
+                width: 100
 
             },
             type: "Luxury",
@@ -31,9 +31,9 @@ export default function ShoppingBasketPage() {
             name: "C",
             quantity: 10,
             dimensions: {
-                height: .300,
-                length: .400,
-                width: .100
+                height: 300,
+                length: 400,
+                width: 100
 
             },
             type: "Luxury",
@@ -43,9 +43,9 @@ export default function ShoppingBasketPage() {
             name: "D",
             quantity: 2,
             dimensions: {
-                height: .300,
-                length: .400,
-                width: .100
+                height: 300,
+                length: 400,
+                width: 100
 
             },
             type: "Essential",
@@ -55,9 +55,9 @@ export default function ShoppingBasketPage() {
             name: "E",
             quantity: 1,
             dimensions: {
-                height: .300,
-                length: .400,
-                width: .100
+                height: 300,
+                length: 400,
+                width: 100
 
             },
             type: "Essential",
@@ -67,9 +67,9 @@ export default function ShoppingBasketPage() {
             name: "F",
             quantity: 6,
             dimensions: {
-                height: .300,
-                length: .400,
-                width: .100
+                height: 300,
+                length: 400,
+                width: 100
             },
             type: "Gift",
             expiration_date: "2021-12-08T11:13:03.203Z"
@@ -95,6 +95,7 @@ export default function ShoppingBasketPage() {
                                 <span className="description">Dimensions:</span>
                                 <span className="info">({item.dimensions.length}/{item.dimensions.width}/{item.dimensions.height})</span>
                             </div>
+                            <button className="button">Add to basket</button>
                         </li>
                 )}
             </ul>
