@@ -3,8 +3,7 @@ import './ShoppingBasketPage.css';
 
 
 export default function ShoppingBasketPage() {
-    var listItemBasket = {},
-        listItem = [
+    const [listItem, setListItem] = useState([
         {
             name: "A",
             quantity: 3,
@@ -75,17 +74,20 @@ export default function ShoppingBasketPage() {
             type: "Gift",
             expiration_date: "2021-12-08T11:13:03.203Z"
         },
-    ]
+    ]);
+    const [listItemBasket, setListItemBasket] = useState({});
 
     function addBasket(index) {
+        console.log("addBasket")
         if (typeof listItemBasket.index === "undefined") {
             listItemBasket.index = 1;
         } else {
             listItemBasket.index++;
         }
-        if ( (listItemBasket.index > listItem[index].quantity) ) {
-
-        }
+        listItem[index].quantity--;
+        console.log(listItem)
+   //     setListItemBasket(listItemBasket);
+   //     setListItem(listItem)
     }
 
     return <div>
