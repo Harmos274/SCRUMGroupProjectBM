@@ -85,9 +85,9 @@ export default function ShoppingBasketPage() {
             listItemBasket.index++;
         }
         listItem[index].quantity--;
-        console.log(listItem)
-   //     setListItemBasket(listItemBasket);
-   //     setListItem(listItem)
+        const newItem = [...listItem];
+        newItem[ index ].quantity = listItem[index].quantity
+        setListItem( newItem )
     }
 
     return <div>
