@@ -25,7 +25,6 @@ export default function ShoppingBasketPage() {
     const [listItemBasket, setListItemBasket] = useState([]);
 
     function addBasket(index) {
-        console.table(items)
         if (items[index].quantity !== 0) {
             dispatch(decreaseItemQuantity(index))
             const itemBasketIndex = listItemBasket.findIndex(item => item.id === items[index].id)
