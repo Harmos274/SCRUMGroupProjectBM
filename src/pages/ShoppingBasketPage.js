@@ -1,6 +1,17 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './ShoppingBasketPage.css';
+import {Box, Button, Flex, Table, Tbody, Td, Text, Tr} from "@chakra-ui/react";
+import {decreaseItemQuantity, useBSMContext} from "../utils/store";
 
+const Sidebar = ({children}) => {
+    return <Box
+        p={5}
+        h="100%"
+        bg=""
+    >
+        {children}
+    </Box>;
+}
 
 export default function ShoppingBasketPage() {
     const [filtres, setFiltres] = useState({
@@ -8,98 +19,35 @@ export default function ShoppingBasketPage() {
         Gift: false,
         Essential: true
     })
-    const [listItem, setListItem] = useState([
-        {
-            name: "A",
-            quantity: 3,
-            dimensions: {
-                height: 300,
-                length: 400,
-                width: 100
-            },
-            type: "Gift",
-            expiration_date: "2021-12-08T11:13:03.203Z"
-        },
-        {
-            name: "B",
-            quantity: 5,
-            dimensions: {
-                height: 300,
-                length: 400,
-                width: 100
 
-            },
-            type: "Luxury",
-            expiration_date: "2021-12-08T11:13:03.203Z"
-        },
-        {
-            name: "C",
-            quantity: 10,
-            dimensions: {
-                height: 300,
-                length: 400,
-                width: 100
+    const {items, dispatch} = useBSMContext();
 
-            },
-            type: "Luxury",
-            expiration_date: "2021-12-08T11:13:03.203Z"
-        },
-        {
-            name: "D",
-            quantity: 2,
-            dimensions: {
-                height: 300,
-                length: 400,
-                width: 100
-
-            },
-            type: "Essential",
-            expiration_date: "2021-12-08T11:13:03.203Z"
-        },
-        {
-            name: "E",
-            quantity: 1,
-            dimensions: {
-                height: 300,
-                length: 400,
-                width: 100
-
-            },
-            type: "Essential",
-            expiration_date: "2021-12-08T11:13:03.203Z"
-        },
-        {
-            name: "F",
-            quantity: 6,
-            dimensions: {
-                height: 300,
-                length: 400,
-                width: 100
-            },
-            type: "Gift",
-            expiration_date: "2021-12-08T11:13:03.203Z"
-        },
-    ]);
-    const [listItemBasket, setListItemBasket] = useState({});
+    const [listItemBasket, setListItemBasket] = useState([]);
 
     function addBasket(index) {
-        if (listItem[index].quantity == 0) {
-            alert(listItem[index].name + " is not available !")
-        } else {
-            if (typeof listItemBasket.index === "undefined") {
-                listItemBasket.index = 1;
+        console.table(items)
+        if (items[index].quantity !== 0) {
+            dispatch(decreaseItemQuantity(index))
+            const itemBasketIndex = listItemBasket.findIndex(item => item.id === items[index].id)
+
+            if (itemBasketIndex !== -1) {
+                listItemBasket[itemBasketIndex].quantity += 1
             } else {
-                listItemBasket.index++;
+                const newItemBasketItem = {...items[index], quantity: 1}
+                const newItemBasketList = [newItemBasketItem, ...listItemBasket]
+                setListItemBasket(newItemBasketList)
             }
-            listItem[index].quantity--;
-            const newItem = [...listItem];
-            newItem[ index ].quantity = listItem[index].quantity
-            setListItem( newItem )
+        } else {
+            alert(`${items[index].name} is unavailable`)
         }
     }
 
+    const getPrice = {"Luxury": 50, "Gift": 20, "Essential": 30};
+    const [totalBasketCost, setTotalBasketCost] = useState(0)
+
+
     function updateFiltre(filtre, value) {
-        const newFiltre = {... filtres}
+        const newFiltre = {...filtres}
         switch (filtre) {
             case "Luxury":
                 newFiltre.Luxury = value
@@ -113,34 +61,74 @@ export default function ShoppingBasketPage() {
         }
         setFiltres(newFiltre);
     }
-    return <div>
+
+    function calculateTotalBasket(e) {
+        e.stopPropagation()
+        const listOfPrice = listItemBasket.map((item) => getPrice[item.type] * item.quantity)
+        if (listOfPrice.length > 0) {
+            setTotalBasketCost(listOfPrice.reduce((acc, value) => acc + value))
+        }
+    }
+
+    return <div style={{display: "flex"}}>
+        <Sidebar variant={"sidebar"}>
+            <div style={{textAlign: "left"}}>
+                <Text fontWeight={"bold"} mb={"10px"}>Shopping Basket</Text>
+                <Table variant={"unstyled"}>
+                    <Tbody>
+                        {listItemBasket.map((item, index) =>
+                            <Tr key={index}>
+                                <Td>
+                                    x{item.quantity}
+                                </Td>
+                                <Td style={{fontWeight: "bold"}}>
+                                    {item.name}
+                                </Td>
+                                <Td>
+                                    {getPrice[item.type] * item.quantity}€
+                                </Td>
+                            </Tr>
+                        )}
+                    </Tbody>
+                </Table>
+                <hr style={{marginTop: "10px", marginBottom: "10px"}}/>
+                <Flex>
+                    <Text fontWeight={"bold"}>Total Cost:</Text>
+                    <Text ml={"2px"}>{totalBasketCost} €</Text>
+                </Flex>
+                <Button onClick={calculateTotalBasket} bg={"primary.300"} mt={"20px"}>Calculate Total</Button>
+            </div>
+        </Sidebar>
         <div className="conteneur-list-item">
             <div className="filtre-item">
-                <label htmlFor="filtre1">Luxury</label><input type="checkbox" defaultChecked={filtres.Luxury} onChange={(e) => updateFiltre("Luxury", e.target.checked)}></input>
-                <label htmlFor="filtre2">Gift</label><input type="checkbox" defaultChecked={filtres.Gift} onChange={(e) => updateFiltre("Gift", e.target.checked)}></input>
-                <label htmlFor="filtre3">Essential</label><input type="checkbox" defaultChecked={filtres.Essential} onChange={(e) => updateFiltre("Essential", e.target.checked)}></input>
+                <label htmlFor="filtre1">Luxury</label><input type="checkbox" defaultChecked={filtres.Luxury}
+                                                              onChange={(e) => updateFiltre("Luxury", e.target.checked)}/>
+                <label htmlFor="filtre2">Gift</label><input type="checkbox" defaultChecked={filtres.Gift}
+                                                            onChange={(e) => updateFiltre("Gift", e.target.checked)}/>
+                <label htmlFor="filtre3">Essential</label><input type="checkbox" defaultChecked={filtres.Essential}
+                                                                 onChange={(e) => updateFiltre("Essential", e.target.checked)}/>
             </div>
             <ul className="list-item">
-                {listItem.map(function (item, index) {
+                {items.map(function (item, index) {
                     return (filtres[item.type] ?
-                        <li className="item" key={index}>
-                            <span className="type-item">{item.type}</span>
-                            <div className="conteneur-item">
-                                <span className="description">Name: </span>
-                                <span className="info">{item.name}</span>
-                            </div>
+                            <li className="item" key={index}>
+                                <span className="type-item">{item.type}</span>
+                                <div className="conteneur-item">
+                                    <span className="description">Name: </span>
+                                    <span className="info">{item.name}</span>
+                                </div>
 
-                            <div className="conteneur-item">
-                                <span className="description">Quantity available:</span>
-                                <span className="info">{item.quantity}</span>
-                            </div>
-                            <div className="conteneur-item">
-                                <span className="description">Dimensions:</span>
-                                <span
-                                    className="info">({item.dimensions.length}/{item.dimensions.width}/{item.dimensions.height})</span>
-                            </div>
-                            <button className="button" onClick={() => addBasket(index)}>Add to basket</button>
-                        </li> : ''
+                                <div className="conteneur-item">
+                                    <span className="description">Quantity available:</span>
+                                    <span className="info">{item.quantity}</span>
+                                </div>
+                                <div className="conteneur-item">
+                                    <span className="description">Dimensions:</span>
+                                    <span
+                                        className="info">({item.dimensions.length}/{item.dimensions.width}/{item.dimensions.height})</span>
+                                </div>
+                                <button className="button" onClick={() => addBasket(index)}>Add to basket</button>
+                            </li> : ''
                     )
                 })
                 }
