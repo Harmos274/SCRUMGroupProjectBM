@@ -83,15 +83,19 @@ export default function ShoppingBasketPage() {
     const [listItemBasket, setListItemBasket] = useState({});
 
     function addBasket(index) {
-        if (typeof listItemBasket.index === "undefined") {
-            listItemBasket.index = 1;
+        if (listItem[index].quantity == 0) {
+            alert(listItem[index].name + " is not available !")
         } else {
-            listItemBasket.index++;
+            if (typeof listItemBasket.index === "undefined") {
+                listItemBasket.index = 1;
+            } else {
+                listItemBasket.index++;
+            }
+            listItem[index].quantity--;
+            const newItem = [...listItem];
+            newItem[ index ].quantity = listItem[index].quantity
+            setListItem( newItem )
         }
-        listItem[index].quantity--;
-        const newItem = [...listItem];
-        newItem[ index ].quantity = listItem[index].quantity
-        setListItem( newItem )
     }
 
     function updateFiltre(filtre, value) {
