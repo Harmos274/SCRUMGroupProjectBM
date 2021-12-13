@@ -42,8 +42,8 @@ export default function ShoppingBasketPage() {
     }
 
     const getPrice = {"Luxury": 50, "Gift": 20, "Essential": 30};
+    const getVAT = {"Luxury": 20, "Gift": 5, "Essential": 10};
     const [totalBasketCost, setTotalBasketCost] = useState(0)
-
 
     function updateFiltre(filtre, value) {
         const newFiltre = {...filtres}
@@ -63,7 +63,7 @@ export default function ShoppingBasketPage() {
 
     function calculateTotalBasket(e) {
         e.stopPropagation()
-        const listOfPrice = listItemBasket.map((item) => getPrice[item.type] * item.quantity)
+        const listOfPrice = listItemBasket.map((item) => (getPrice[item.type] + getPrice[item.type] * getVAT[item.type] / 100) * item.quantity)
         if (listOfPrice.length > 0) {
             setTotalBasketCost(listOfPrice.reduce((acc, value) => acc + value))
         }
