@@ -2,7 +2,7 @@ import React, {createContext, useContext, useReducer} from "react";
 
 export const BSMContext = createContext(null);
 // Initial state
- const initialState = [/*{
+ const initialState = [{
     id: 1,
     name: "TOTO",
     quantity: 5,
@@ -49,7 +49,7 @@ export const BSMContext = createContext(null);
         },
         type: "Luxury",
         expiration_date: "2021-12-08T11:13:03.203Z"
-    }*/
+    }
 ];
 
 // Actions
@@ -83,7 +83,7 @@ export function bsmReducer(state, action) {
             return state
         case REMOVE_ITEM:
             const copy = [...state];
-            copy.splice(action.index, 1);
+            copy.splice(copy.findIndex(item => item.id === action.index), 1);
             state = copy
             return state;
         case INCREASE_ITEM_QUANTITY:
