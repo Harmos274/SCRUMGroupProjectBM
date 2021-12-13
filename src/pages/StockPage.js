@@ -34,7 +34,6 @@ function StockPage() {
       type: type,
       expirationDate: expirationDate
     }
-    console.log("Add item with id " + newItem.id)
     dispatch(addItem(newItem));
   }
 
