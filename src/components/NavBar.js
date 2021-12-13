@@ -32,7 +32,7 @@ const MenuToggle = ({toggle, isOpen}) => {
 
 const MenuItem = ({children, isLast, to = "/", ...rest}) => {
     return (
-        <NavLink exact to={to} style={({isActive}) =>
+        <NavLink to={to} style={({isActive}) =>
             isActive ? {textDecoration: "underline"} : undefined
         }>
             <Text display="block" {...rest}>
