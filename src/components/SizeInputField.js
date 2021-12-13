@@ -7,9 +7,12 @@ import {
 } from '@chakra-ui/react'
 
 const SizeInputField = (props) => {
+
+    const {onChange, ...other} = props;
+
     return (
-        <NumberInput {...props}>
-            <NumberInputField />
+        <NumberInput {...other}>
+            <NumberInputField type="number" onChange={onChange}/>
             <NumberInputStepper>
                 <NumberIncrementStepper />
                 <NumberDecrementStepper />
