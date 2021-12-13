@@ -1,3 +1,5 @@
 export default function ItemPackingPage() {
-    return <div/>
+    return (<div>
+
+    </div>);
 }
