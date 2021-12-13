@@ -8,11 +8,9 @@ import {
 
 const SizeInputField = (props) => {
 
-    const {onChange, ...other} = props;
-
     return (
-        <NumberInput {...other}>
-            <NumberInputField type="number" onChange={onChange}/>
+        <NumberInput {...props}>
+            <NumberInputField type="number"/>
             <NumberInputStepper>
                 <NumberIncrementStepper />
                 <NumberDecrementStepper />

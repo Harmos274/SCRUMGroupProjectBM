@@ -13,14 +13,14 @@ import { useState } from 'react';
 
 const AddItem = (props) => {
 
-    const [name, setName] = useState('');
-    const [type, setType] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [expirationDate, setExpirationDate] = useState('');
-    const [height, setHeight] = useState('');
-    const [length, setLength] = useState('');
-    const [width, setWidth] = useState('');
-    const [weight, setWeight] = useState('');
+    const [name, setName] = useState('None');
+    const [type, setType] = useState('None');
+    const [quantity, setQuantity] = useState('0');
+    const [expirationDate, setExpirationDate] = useState('12-24-2030');
+    const [height, setHeight] = useState('.0');
+    const [length, setLength] = useState('.0');
+    const [width, setWidth] = useState('.0');
+    const [weight, setWeight] = useState('.0');
 
     var {onAddItem, ...other} = props;
     
@@ -48,8 +48,8 @@ const AddItem = (props) => {
   
             <FormControl id='item_quantity' mb="2%">
               <FormLabel>Quantity</FormLabel>
-              <NumberInput defaultValue={0} min={0}>
-                <NumberInputField type="number" onChange={e => setQuantity(e.currentTarget.value)}/>
+              <NumberInput defaultValue={0} min={0} onChange={e => {setQuantity(e)}}>
+                <NumberInputField/>
                 <NumberInputStepper>
                   <NumberIncrementStepper />
                   <NumberDecrementStepper />
@@ -62,7 +62,8 @@ const AddItem = (props) => {
             <FormLabel>Expiration date</FormLabel>
             <Input 
               placeholder="10/12/2021" 
-              onChange={e => setExpirationDate(e.currentTarget.value)}
+              type="date"
+              onChange={e => {setExpirationDate(e.currentTarget.value)}}
             />
           </FormControl>
   
@@ -74,7 +75,7 @@ const AddItem = (props) => {
                 min={0} 
                 precision={2} 
                 step={0.5} 
-                onChange={e => setHeight(e.currentTarget.value)}
+                onChange={e => setHeight(e)}
               />
             </FormControl>
   
@@ -85,7 +86,7 @@ const AddItem = (props) => {
                 min={0}
                 precision={2}
                 step={0.5}
-                onChange={e => setLength(e.currentTarget.value)}
+                onChange={e => setLength(e)}
               />
             </FormControl>
   
@@ -96,7 +97,7 @@ const AddItem = (props) => {
                 min={0}
                 precision={2}
                 step={0.5}
-                onChange={e => setWidth(e.currentTarget.value)}
+                onChange={e => setWidth(e)}
               />
             </FormControl>
   
@@ -107,7 +108,7 @@ const AddItem = (props) => {
                 min={0}
                 precision={1}
                 step={0.5}
-                onChange={e => setWeight(e.currentTarget.value)}
+                onChange={e => setWeight(e)}
               />
             </FormControl>
   
