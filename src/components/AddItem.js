@@ -9,9 +9,13 @@ import {
   NumberDecrementStepper,
 } from '@chakra-ui/react'
 
+function onAddItem(e) {
+  
+}
+
 const AddItem = (props) => {
     return (  
-        <Flex position="relative" direction='column' alignItems='center' maxWidth='500px' {...props}>
+        <Flex position="relative" direction='column' alignItems='center' maxWidth='500px' marginTop="8%">
   
           <FormControl id='item_name' mb="2%">
             <FormLabel>Name</FormLabel>
@@ -68,7 +72,7 @@ const AddItem = (props) => {
   
           </Flex>
           <Spacer />
-          <Button colorScheme="teal" variant="solid" width="100%">
+          <Button colorScheme="teal" variant="solid" width="100%" onClick={onAddItem}>
             Add Item
           </Button>
         </Flex>
