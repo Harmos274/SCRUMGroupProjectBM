@@ -1,15 +1,31 @@
 import React, { useState } from 'react';
 import './StockPage.css'
-import { useBSMContext } from '../utils/store';
+import { addItem , useBSMContext } from '../utils/store';
 import { Flex } from '@chakra-ui/react'
 import AddItem from '../components/AddItem'
 import {Link} from "react-router-dom";
 
 function StockPage() {
-  const data = useBSMContext();
+  const { data, dispatch } = useBSMContext();
 
-  const [items, ] = useState(data ? data.items.items : []);
+  const [items, ] = useState(data ? data.items : []);
   const getPrice = {"Luxury": 50, "Gift": 20, "Essential": 30};
+
+  const onAddItem = (name, type, quantity, expirationDate, height, length, width, weight) => {
+    const newItem = {
+      id: data.items.length,
+      name: name,
+      quantity: quantity,
+      dimensions: {
+        height: height,
+        length: length,
+        width: width,
+      },
+      type: type,
+      expirationDate: expirationDate
+    }
+    dispatch(addItem(newItem));
+  }
 
   return (
     <div id="stock-page-container">
@@ -46,7 +62,7 @@ function StockPage() {
         }
       </div>
       <Flex w="100%" justifyContent="center">
-        <AddItem marginTop="8%"/>
+        <AddItem marginTop="8%" onAddItem={onAddItem}/>
       </Flex>
     </div>
   );

@@ -1,7 +1,6 @@
 import { Input, Flex, Select, Button, Spacer } from '@chakra-ui/react'
 import { FormControl, FormLabel } from '@chakra-ui/react'
 import SizeInputField from './SizeInputField'
-import {decreaseItemQuantity, useBSMContext} from "../utils/store";
 
 import {
   NumberInput,
@@ -23,10 +22,10 @@ const AddItem = (props) => {
     const [width, setWidth] = useState('');
     const [weight, setWeight] = useState('');
 
-    var {addItem, ...other} = props;
+    var {onAddItem, ...other} = props;
     
     const addItemHandler = (e) => {
-
+      onAddItem(name, type, quantity, expirationDate, height, length, width, weight);
     };
 
     return (
@@ -61,28 +60,55 @@ const AddItem = (props) => {
   
           <FormControl id='expiration_date' mb="2%">
             <FormLabel>Expiration date</FormLabel>
-            <Input placeholder="10/12/2021" onChange={e => setExpirationDate(e.currentTarget.value)}/>
+            <Input 
+              placeholder="10/12/2021" 
+              onChange={e => setExpirationDate(e.currentTarget.value)}
+            />
           </FormControl>
   
           <Flex flexDirection='row' alignItems='center' mb="3%">
             <FormControl id="height" marginEnd="2%">
               <FormLabel>Height</FormLabel>
-              <SizeInputField defaultValue={0} min={0} precision={2} step={0.5} onChange={e => setHeight(e.currentTarget.value)}/>
+              <SizeInputField 
+                defaultValue={0} 
+                min={0} 
+                precision={2} 
+                step={0.5} 
+                onChange={e => setHeight(e.currentTarget.value)}
+              />
             </FormControl>
   
             <FormControl id="lenght" marginEnd="2%">
               <FormLabel>Length</FormLabel>
-              <SizeInputField defaultValue={0} min={0} precision={2} step={0.5} onChange={e => setLength(e.currentTarget.value)}/>
+              <SizeInputField
+                defaultValue={0}
+                min={0}
+                precision={2}
+                step={0.5}
+                onChange={e => setLength(e.currentTarget.value)}
+              />
             </FormControl>
   
             <FormControl id="width" marginEnd="10%">
               <FormLabel>Width</FormLabel>
-              <SizeInputField defaultValue={0} min={0} precision={2} step={0.5} onChange={e => setWidth(e.currentTarget.value)}/>
+              <SizeInputField
+                defaultValue={0}
+                min={0}
+                precision={2}
+                step={0.5}
+                onChange={e => setWidth(e.currentTarget.value)}
+              />
             </FormControl>
   
             <FormControl id="Weight" alignSelf="end">
               <FormLabel>Weight</FormLabel>
-              <SizeInputField defaultValue={0} min={0} precision={1} step={0.5} onChange={e => setWeight(e.currentTarget.value)}/>
+              <SizeInputField
+                defaultValue={0}
+                min={0}
+                precision={1}
+                step={0.5}
+                onChange={e => setWeight(e.currentTarget.value)}
+              />
             </FormControl>
   
           </Flex>
