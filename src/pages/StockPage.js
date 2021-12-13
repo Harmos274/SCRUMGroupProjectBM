@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './StockPage.css'
 import { addItem , useBSMContext } from '../utils/store';
-import { Flex } from '@chakra-ui/react'
+import { Divider, Flex } from '@chakra-ui/react'
 import AddItem from '../components/AddItem'
 import {Link} from "react-router-dom";
 
@@ -13,7 +13,7 @@ function StockPage() {
 
   const onAddItem = (name, type, quantity, expirationDate, height, length, width, weight) => {
     const newItem = {
-      id: data.items.length,
+      id: data ? data.items.length : 0,
       name: name,
       quantity: quantity,
       dimensions: {
@@ -24,6 +24,7 @@ function StockPage() {
       type: type,
       expirationDate: expirationDate
     }
+    console.log("Add item with id " + newItem.id)
     dispatch(addItem(newItem));
   }
 
@@ -61,8 +62,9 @@ function StockPage() {
           <div>No items to display!</div>
         }
       </div>
+      <Divider marginTop="4%"/>
       <Flex w="100%" justifyContent="center">
-        <AddItem marginTop="8%" onAddItem={onAddItem}/>
+        <AddItem marginTop="4%" onAddItem={onAddItem}/>
       </Flex>
     </div>
   );
