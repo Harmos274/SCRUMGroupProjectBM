@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './ShoppingBasketPage.css';
 import {Box, Button, Flex, Table, Tbody, Td, Text, Tr} from "@chakra-ui/react";
-import {decreaseItemQuantity, useBSMContext} from "../utils/store";
+import {decreaseItemQuantity, increaseItemQuantity, useBSMContext} from "../utils/store";
 
 const Sidebar = ({children}) => {
     return <Box
@@ -71,6 +71,15 @@ export default function ShoppingBasketPage() {
 
     function clearBasket(e) {
         setListItemBasket([]);
+        listItemBasket.map((item, itemBasketIndex) => {
+
+            const index = items.findIndex((storeItem) => item.id === storeItem.id);
+            const quantity = item.quantity;
+
+            listItemBasket.splice(itemBasketIndex, 1)
+            for (let i = 0; i < quantity; i += 1) 
+                dispatch(increaseItemQuantity(index));
+        });
         setTotalBasketCost(0);
     }
 
