@@ -78,7 +78,7 @@ function StockPage() {
           <div className="stock-page-item-info"></div>
         </div>
         {items.length !== 0 ?
-          (onlyExpired ? items.filter(item => new Date().getTime() <= new Date(item.expiration_date).getTime()).map(itemRenderer)
+          (onlyExpired ? items.filter(item => new Date().getTime() > new Date(item.expiration_date).getTime()).map(itemRenderer)
           : items.map(itemRenderer)) :
           <div>No items to display!</div>
         }
