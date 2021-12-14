@@ -75,10 +75,11 @@ export default function ShoppingBasketPage() {
             const index = items.findIndex((storeItem) => item.id === storeItem.id);
             const amount = item.quantity;
 
-            listItemBasket.splice(itemBasketIndex, 1);
-            console.log(amount)
+
             dispatch(increaseItemQuantity(index, amount));
+            return (true);
         });
+        setListItemBasket([]);
         setTotalBasketCost(0);
     }
 
@@ -108,8 +109,10 @@ export default function ShoppingBasketPage() {
                     <Text fontWeight={"bold"}>Total Cost:</Text>
                     <Text ml={"2px"}>{totalBasketCost} €</Text>
                 </Flex>
-                <Button onClick={calculateTotalBasket} bg={"primary.300"} mt={"20px"}>Calculate Total</Button>
-                <Button onClick={clearBasket} textColor="white" bg={"primary.900"} mt={"20px"}>Clear Basket</Button>
+                <Flex direction="column">
+                    <Button onClick={calculateTotalBasket} bg={"primary.300"} mt={"20px"}>Calculate Total</Button>
+                    <Button onClick={clearBasket} textColor="white" bg={"primary.900"} mt={"20px"} >Clear Basket</Button>
+                </Flex>
             </div>
         </Sidebar>
         <div className="conteneur-list-item">
