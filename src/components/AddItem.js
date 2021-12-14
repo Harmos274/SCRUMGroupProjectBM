@@ -1,6 +1,7 @@
 import { Input, Flex, Select, Button, Spacer } from '@chakra-ui/react'
 import { FormControl, FormLabel } from '@chakra-ui/react'
 import SizeInputField from './SizeInputField'
+import moment from 'moment';
 
 import {
   NumberInput,
@@ -16,7 +17,7 @@ const AddItem = (props) => {
     const [name, setName] = useState('None');
     const [type, setType] = useState('None');
     const [quantity, setQuantity] = useState('0');
-    const [expirationDate, setExpirationDate] = useState('12-24-2030');
+    const [expirationDate, setExpirationDate] = useState('12/24/2030');
     const [height, setHeight] = useState('.0');
     const [length, setLength] = useState('.0');
     const [width, setWidth] = useState('.0');
@@ -25,7 +26,7 @@ const AddItem = (props) => {
     var {onAddItem, ...other} = props;
     
     const addItemHandler = (e) => {
-      onAddItem(name, type, quantity, expirationDate, height, length, width, weight);
+      onAddItem(name, type, quantity, moment(expirationDate).toISOString(), height, length, width, weight);
     };
 
     return (

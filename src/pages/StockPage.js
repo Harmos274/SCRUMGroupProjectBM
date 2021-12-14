@@ -4,6 +4,7 @@ import { addItem, useBSMContext, removeItem } from '../utils/store';
 import { Button, Divider, Flex } from '@chakra-ui/react'
 import AddItem from '../components/AddItem'
 import { Link } from "react-router-dom";
+
 function StockPage() {
   const { items, dispatch } = useBSMContext();
   const [onlyExpired, setOnlyExpired] = useState(false)
@@ -46,6 +47,7 @@ function StockPage() {
         length: length,
         width: width,
       },
+      weight: weight,
       type: type,
       expirationDate: expirationDate
     }
