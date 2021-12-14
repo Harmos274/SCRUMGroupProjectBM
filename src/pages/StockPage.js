@@ -49,7 +49,7 @@ function StockPage() {
       },
       weight: weight,
       type: type,
-      expirationDate: expirationDate
+      expiration_date: expirationDate
     }
     dispatch(addItem(newItem));
   }
