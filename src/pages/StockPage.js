@@ -39,7 +39,7 @@ function StockPage() {
 
   const onAddItem = (name, type, quantity, expirationDate, height, length, width, weight) => {
     const newItem = {
-      id: items ? items.length : 0,
+      id: items.length ? items[items.length - 1].id + 1 : 0,
       name: name,
       quantity: quantity,
       dimensions: {
