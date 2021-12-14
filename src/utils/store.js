@@ -67,8 +67,8 @@ export function removeItem(index) {
     return {type: REMOVE_ITEM, index};
 }
 
-export function increaseItemQuantity(index) {
-    return {type: INCREASE_ITEM_QUANTITY, index}
+export function increaseItemQuantity(index, amount = 1) {
+    return {type: INCREASE_ITEM_QUANTITY, index, amount}
 }
 
 export function decreaseItemQuantity(index) {
@@ -87,7 +87,7 @@ export function bsmReducer(state, action) {
             state = copy
             return state;
         case INCREASE_ITEM_QUANTITY:
-            state[action.index].quantity += 1
+            state[action.index].quantity += action.amount
             state = [...state]
             return state;
         case DECREASE_ITEM_QUANTITY:

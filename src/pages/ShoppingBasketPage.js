@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './ShoppingBasketPage.css';
 import {Box, Button, Flex, Table, Tbody, Td, Text, Tr} from "@chakra-ui/react";
-import {decreaseItemQuantity, useBSMContext} from "../utils/store";
+import {decreaseItemQuantity, increaseItemQuantity, useBSMContext} from "../utils/store";
 
 const Sidebar = ({children}) => {
     return <Box
@@ -69,6 +69,20 @@ export default function ShoppingBasketPage() {
         }
     }
 
+    function clearBasket(e) {
+        listItemBasket.map((item, itemBasketIndex) => {
+
+            const index = items.findIndex((storeItem) => item.id === storeItem.id);
+            const amount = item.quantity;
+
+
+            dispatch(increaseItemQuantity(index, amount));
+            return (true);
+        });
+        setListItemBasket([]);
+        setTotalBasketCost(0);
+    }
+
     return <div style={{display: "flex"}}>
         <Sidebar variant={"sidebar"}>
             <div style={{textAlign: "left"}}>
@@ -95,7 +109,10 @@ export default function ShoppingBasketPage() {
                     <Text fontWeight={"bold"}>Total Cost:</Text>
                     <Text ml={"2px"}>{totalBasketCost} €</Text>
                 </Flex>
-                <Button onClick={calculateTotalBasket} bg={"primary.300"} mt={"20px"}>Calculate Total</Button>
+                <Flex direction="column">
+                    <Button onClick={calculateTotalBasket} bg={"primary.300"} mt={"20px"}>Calculate Total</Button>
+                    <Button onClick={clearBasket} textColor="white" bg={"primary.900"} mt={"20px"} >Clear Basket</Button>
+                </Flex>
             </div>
         </Sidebar>
         <div className="conteneur-list-item">
