@@ -70,15 +70,14 @@ export default function ShoppingBasketPage() {
     }
 
     function clearBasket(e) {
-        setListItemBasket([]);
         listItemBasket.map((item, itemBasketIndex) => {
 
             const index = items.findIndex((storeItem) => item.id === storeItem.id);
-            const quantity = item.quantity;
+            const amount = item.quantity;
 
-            listItemBasket.splice(itemBasketIndex, 1)
-            for (let i = 0; i < quantity; i += 1) 
-                dispatch(increaseItemQuantity(index));
+            listItemBasket.splice(itemBasketIndex, 1);
+            console.log(amount)
+            dispatch(increaseItemQuantity(index, amount));
         });
         setTotalBasketCost(0);
     }
