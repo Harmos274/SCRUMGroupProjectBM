@@ -16,7 +16,7 @@ const Sidebar = ({children}) => {
 export default function ShoppingBasketPage() {
     const [filtres, setFiltres] = useState({
         Luxury: true,
-        Gift: false,
+        Gift: true,
         Essential: true
     })
 
