@@ -69,6 +69,11 @@ export default function ShoppingBasketPage() {
         }
     }
 
+    function clearBasket(e) {
+        setListItemBasket([]);
+        setTotalBasketCost(0);
+    }
+
     return <div style={{display: "flex"}}>
         <Sidebar variant={"sidebar"}>
             <div style={{textAlign: "left"}}>
@@ -96,6 +101,7 @@ export default function ShoppingBasketPage() {
                     <Text ml={"2px"}>{totalBasketCost} €</Text>
                 </Flex>
                 <Button onClick={calculateTotalBasket} bg={"primary.300"} mt={"20px"}>Calculate Total</Button>
+                <Button onClick={clearBasket} textColor="white" bg={"primary.900"} mt={"20px"}>Clear Basket</Button>
             </div>
         </Sidebar>
         <div className="conteneur-list-item">
