@@ -106,7 +106,7 @@ const AddItem = (props) => {
               />
             </FormControl>
   
-            <FormControl id="width" marginEnd="10%" isRequired>
+            <FormControl id="width" marginEnd="2%" alignSelf="end" isRequired>
               <FormLabel>Width (cm)</FormLabel>
               <SizeInputField
                 defaultValue={0}
