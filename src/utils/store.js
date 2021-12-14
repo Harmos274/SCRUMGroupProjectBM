@@ -3,7 +3,7 @@ import React, {createContext, useContext, useReducer} from "react";
 export const BSMContext = createContext(null);
 // Initial state
  const initialState = [{
-    id: 1,
+    id: 0,
     name: "TOTO",
     quantity: 5,
     dimensions: {
@@ -15,7 +15,7 @@ export const BSMContext = createContext(null);
     expiration_date: "2021-12-08T11:13:03.203Z"
 },
     {
-        id: 2,
+        id: 1,
         name: "Tata",
         quantity: 2,
         dimensions: {
@@ -27,7 +27,7 @@ export const BSMContext = createContext(null);
         expiration_date: "2021-12-08T11:13:03.203Z"
     },
     {
-        id: 3,
+        id: 2,
         name: "B",
         quantity: 8,
         dimensions: {
@@ -39,7 +39,7 @@ export const BSMContext = createContext(null);
         expiration_date: "2021-12-08T11:13:03.203Z"
     },
     {
-        id: 4,
+        id: 3,
         name: "A",
         quantity: 10,
         dimensions: {
